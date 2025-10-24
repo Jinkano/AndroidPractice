@@ -4,4 +4,9 @@
     <string name="txt_place_date_foundation">Place and date of foundation</string>
     <string name="txt_musical_genre">Musical genre</string>
     <string name="txt_group_image">Group image</string>
+    <string name="txt_group_members">group_members</string>
+    <string name="txt_history">History</string>
+    <string name="txt_discography">Discography</string>
+    <string name="txt_disk_image">Disk image</string>
+    <string name="txt_information">Information</string>
 </resources>

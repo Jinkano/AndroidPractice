@@ -1,6 +1,8 @@
 package com.example.androidpractice.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,8 +22,9 @@ class MainActivity : AppCompatActivity()
     /**/
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: ListGroupAdapter
-    var originalVgList: List<MusicGroups> = emptyList()
-    var filteredVgList: List<MusicGroups> = emptyList()
+    //var originalVgList: List<MusicGroups> = emptyList()
+    //var filteredVgList: List<MusicGroups> = emptyList()
+    var listMusicGroups: List<MusicGroups> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +35,28 @@ class MainActivity : AppCompatActivity()
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        /*Start of onCreate*/
+        }/*Start of onCreate*/
 
-        //
-        adapter = ListGroupAdapter(filteredVgList) { position ->
-            val videoGame = filteredVgList[position]
-            /*val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.PUT_EXTRA_GAME_ID, videoGame.id)
-            startActivity(intent)*/
-        }
-        //
+        /**/
+        adapter = ListGroupAdapter(listMusicGroups,
+            {position ->
+                val intent = Intent(this, DiscographyActivity::class.java)
+                startActivity(intent)
+                Toast.makeText(this,"fg", Toast.LENGTH_SHORT).show()
+        },
+            {position ->
+                val intent = Intent(this, InformationActivity::class.java)
+                startActivity(intent)
+            }
+        )
+
+        /**/
         binding.idRvListGroups.adapter = adapter
         binding.idRvListGroups.layoutManager = LinearLayoutManager(this)
 
         getGroupList()
+
+        /**/
 
     }/*End of onCreate*/
 
@@ -56,10 +66,10 @@ class MainActivity : AppCompatActivity()
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val service = MusicGroupService.getInstance()
-                originalVgList = service.getAllGroups()
-                filteredVgList = originalVgList
+                listMusicGroups = service.getAllGroups()
+                //filteredVgList = originalVgList
                 CoroutineScope(Dispatchers.Main).launch {
-                    adapter.updateItems(filteredVgList)
+                    adapter.updateItems(listMusicGroups)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

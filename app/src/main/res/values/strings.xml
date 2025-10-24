@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Practica Android</string>
+    <string name="txt_group_image">Imagen del grupo</string>
     <string name="txt_place_date_foundation">Lugar y fecha de fundación</string>
     <string name="txt_musical_genre">Genero musical</string>
-    <string name="txt_group_image">Imagen del grupo</string>
+    <string name="txt_group_members">Miembros del grupo</string>
+    <string name="txt_history">Historia</string>
+    <string name="txt_discography">Discografía</string>
 
     <!---->
+    <string name="txt_disk_image">Imagen del disco</string>
+    <string name="txt_information">Información</string>
+
     <!---->
     <!---->
 </resources>
