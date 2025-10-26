@@ -1,102 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".activities.InformationActivity">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/idTvNameGroup"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:gravity="center"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            tools:text="Nombre del grupo" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/idIvImgGroup"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:contentDescription="@string/txt_group_image"
-            tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/idIvImgGroup"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:contentDescription="@string/txt_group_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
 
-        <TextView
-            android:id="@+id/tvPlaceYearFounded"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_place_date_foundation"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idTvNameGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/idIvImgGroup"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Nombre del grupo" />
 
-        <TextView
-            android:id="@+id/idTvPlaceYearFounded"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            tools:text="txt_place_date_foundation" />
+            <TextView
+                android:id="@+id/tvPlaceYearFounded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txt_place_date_foundation"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idIvImgGroup" />
 
-        <TextView
-            android:id="@+id/tvMusicalGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_musical_genre"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idTvPlaceYearFounded"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPlaceYearFounded"
+                tools:text="txt_place_date_foundation" />
 
-        <TextView
-            android:id="@+id/idTvMusicalGenre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            tools:text="txt_musical_genre" />
+            <TextView
+                android:id="@+id/tvMusicalGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_musical_genre"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvPlaceYearFounded"
+                app:layout_constraintTop_toBottomOf="@+id/idTvPlaceYearFounded" />
 
-        <TextView
-            android:id="@+id/tvGroupMembers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_group_members"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idTvMusicalGenre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/idTvPlaceYearFounded"
+                app:layout_constraintStart_toStartOf="@+id/idTvPlaceYearFounded"
+                app:layout_constraintTop_toBottomOf="@+id/tvMusicalGenre"
+                tools:text="txt_musical_genre" />
 
-        <TextView
-            android:id="@+id/idTvGroupMembers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            tools:text="txt_group_members" />
+            <TextView
+                android:id="@+id/tvGroupMembers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_group_members"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvMusicalGenre"
+                app:layout_constraintTop_toBottomOf="@+id/idTvMusicalGenre" />
 
-        <TextView
-            android:id="@+id/tvHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_history"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idTvGroupMembers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/idTvMusicalGenre"
+                app:layout_constraintStart_toStartOf="@+id/idTvMusicalGenre"
+                app:layout_constraintTop_toBottomOf="@+id/tvGroupMembers"
+                tools:text="txt_group_members" />
 
-        <TextView
-            android:id="@+id/idTvHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
-            tools:text="txt_history" />
+            <TextView
+                android:id="@+id/tvHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_history"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvGroupMembers"
+                app:layout_constraintTop_toBottomOf="@+id/idTvGroupMembers" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/idTvHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/idTvGroupMembers"
+                app:layout_constraintStart_toStartOf="@+id/idTvGroupMembers"
+                app:layout_constraintTop_toBottomOf="@+id/tvHistory"
+                tools:text="txt_history" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

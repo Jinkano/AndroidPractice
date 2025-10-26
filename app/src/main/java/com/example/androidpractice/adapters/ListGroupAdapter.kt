@@ -28,8 +28,8 @@ class ListGroupAdapter(
     {
         val item = items[position]
         holder.render(item)
-        holder.itemView.setOnClickListener { onDiscographyListener(position) }
-        holder.itemView.setOnClickListener { onInformationListener(position) }
+        holder.binding.idBtnDiscography.setOnClickListener { onDiscographyListener(position) }
+        holder.binding.idBtnInformation.setOnClickListener { onInformationListener(position) }
     }
 
     override fun getItemCount(): Int {return items.size}
@@ -49,5 +49,9 @@ class MusicGroupViewHolder(val binding: ItemListGroupBinding): RecyclerView.View
             binding.idTvNameGroup.text = musicGroup.group
             //Log.i("API", musicGroup.imageGroup ?: "")
             Picasso.get().load(musicGroup.imageGroup).into(binding.idIvImgGroup)
+            //
+            //val discographyList: List<Discography> = musicGroup.discography
+            //listDiscography = musicGroup.discography
+            //
         }
 }

@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidpractice.R
 import com.example.androidpractice.adapters.ListGroupAdapter
+import com.example.androidpractice.data.Discography
 import com.example.androidpractice.data.MusicGroupService
 import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivityMainBinding
@@ -22,9 +23,10 @@ class MainActivity : AppCompatActivity()
     /**/
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: ListGroupAdapter
-    //var originalVgList: List<MusicGroups> = emptyList()
-    //var filteredVgList: List<MusicGroups> = emptyList()
     var listMusicGroups: List<MusicGroups> = emptyList()
+
+    var listDiscography: List<Discography> = emptyList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +40,31 @@ class MainActivity : AppCompatActivity()
         }/*Start of onCreate*/
 
         /**/
+        supportActionBar?.title = getString(R.string.txt_title_main)
+
+        getGroupList()
+
+        /**/
         adapter = ListGroupAdapter(listMusicGroups,
             {position ->
+                val musicGroup = listMusicGroups[position]
                 val intent = Intent(this, DiscographyActivity::class.java)
+                intent.putExtra(DiscographyActivity.PE_NAME_GROUP,musicGroup.group)
+                // Usamos putParcelableArrayListExtra para pasar una lista de Parcelables
+                //intent.putArrayListExtra("ALBUMS_KEY", ArrayList(discographyList))
+                //intent.putExtra(InformationActivity.PE_DISCOGRAPHY_GROUP,musicGroup.discography)
+                //
                 startActivity(intent)
-                Toast.makeText(this,"fg", Toast.LENGTH_SHORT).show()
         },
             {position ->
+                val musicGroup = listMusicGroups[position]
                 val intent = Intent(this, InformationActivity::class.java)
+                intent.putExtra(InformationActivity.PE_NAME_GROUP,musicGroup.group)
+                intent.putExtra(InformationActivity.PE_FOUNDED_GROUP,musicGroup.founded)
+                intent.putExtra(InformationActivity.PE_GENRE_GROUP,musicGroup.genre)
+                intent.putExtra(InformationActivity.PE_MEMBERS_GROUP,musicGroup.members)
+                intent.putExtra(InformationActivity.PE_HISTORY_GROUP,musicGroup.history)
+                intent.putExtra(InformationActivity.PE_IMAGE_GROUP,musicGroup.imageGroup)
                 startActivity(intent)
             }
         )
@@ -54,20 +73,19 @@ class MainActivity : AppCompatActivity()
         binding.idRvListGroups.adapter = adapter
         binding.idRvListGroups.layoutManager = LinearLayoutManager(this)
 
-        getGroupList()
+
 
         /**/
 
     }/*End of onCreate*/
 
 
-    /*We create the getGameList function*/
+    /*We create the function*/
     fun getGroupList() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val service = MusicGroupService.getInstance()
                 listMusicGroups = service.getAllGroups()
-                //filteredVgList = originalVgList
                 CoroutineScope(Dispatchers.Main).launch {
                     adapter.updateItems(listMusicGroups)
                 }
@@ -77,4 +95,19 @@ class MainActivity : AppCompatActivity()
         }
     }
 
-}
+    /*We create the function*/
+    /*fun getListDiscograpy() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val service = MusicGroupService.getInstance()
+                listDiscography = service.getAllDiscography()
+                CoroutineScope(Dispatchers.Main).launch {
+                    adapter.updateItems(listDiscography)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }*/
+
+}/*END of MainActivity : AppCompatActivity()*/

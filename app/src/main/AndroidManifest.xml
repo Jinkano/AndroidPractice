@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidPractice">
         <activity
-            android:name=".activities.InformationActivity"
+            android:name=".activities.DiscographyActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.DiscographyActivity"
+            android:name=".activities.InformationActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
