@@ -2,8 +2,13 @@ package com.example.androidpractice.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,9 +19,11 @@ import com.example.androidpractice.data.Discography
 import com.example.androidpractice.data.MusicGroupService
 import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivityMainBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.time.Duration
 
 class MainActivity : AppCompatActivity()
 {
@@ -27,7 +34,15 @@ class MainActivity : AppCompatActivity()
 
     var listDiscography: List<Discography> = emptyList()
 
+/**/
+    var nameGroup = ""
+    var placeYearFounded = ""
+    var musicalGenre = ""
+    var groupMembers = ""
+    var history = ""
+    var imageGroup: String? = ""
 
+    /**/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,6 +65,8 @@ class MainActivity : AppCompatActivity()
                 val musicGroup = listMusicGroups[position]
                 val intent = Intent(this, DiscographyActivity::class.java)
                 intent.putExtra(DiscographyActivity.PE_NAME_GROUP,musicGroup.group)
+                //intent.putExtra(DiscographyActivity.PE_NAME_GROUP,musicGroup.music_group)
+                //intent.putExtra("SELECTED_GROUP",musicGroup.discography)
                 // Usamos putParcelableArrayListExtra para pasar una lista de Parcelables
                 //intent.putArrayListExtra("ALBUMS_KEY", ArrayList(discographyList))
                 //intent.putExtra(InformationActivity.PE_DISCOGRAPHY_GROUP,musicGroup.discography)
@@ -58,6 +75,17 @@ class MainActivity : AppCompatActivity()
         },
             {position ->
                 val musicGroup = listMusicGroups[position]
+
+                nameGroup = musicGroup.group
+                placeYearFounded = musicGroup.founded
+                musicalGenre = musicGroup.genre
+                groupMembers = musicGroup.members
+                history = musicGroup.history
+                imageGroup = musicGroup.imageGroup
+
+                showAlertDialogInfo()
+                //showAlertDialog()
+                /*
                 val intent = Intent(this, InformationActivity::class.java)
                 intent.putExtra(InformationActivity.PE_NAME_GROUP,musicGroup.group)
                 intent.putExtra(InformationActivity.PE_FOUNDED_GROUP,musicGroup.founded)
@@ -65,7 +93,7 @@ class MainActivity : AppCompatActivity()
                 intent.putExtra(InformationActivity.PE_MEMBERS_GROUP,musicGroup.members)
                 intent.putExtra(InformationActivity.PE_HISTORY_GROUP,musicGroup.history)
                 intent.putExtra(InformationActivity.PE_IMAGE_GROUP,musicGroup.imageGroup)
-                startActivity(intent)
+                startActivity(intent)*/
             }
         )
 
@@ -109,5 +137,64 @@ class MainActivity : AppCompatActivity()
             }
         }
     }*/
+
+    /**/
+    fun showAlertDialogInfo()
+    {
+        val builder = AlertDialog.Builder(this)
+
+        // Inflar el layout personalizado
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.alertdialog_custom_info, null)
+
+        //
+        val ivImgGroup = customLayout.findViewById<ImageView>(R.id.idIvImgGroup)
+        val tvNameGroup = customLayout.findViewById<TextView>(R.id.idTvNameGroup)
+        val tvPlaceYearFounded = customLayout.findViewById<TextView>(R.id.idTvPlaceYearFounded)
+        val tvMusicalGenre = customLayout.findViewById<TextView>(R.id.idTvMusicalGenre)
+        val tvGroupMembers = customLayout.findViewById<TextView>(R.id.idTvGroupMembers)
+        val tvHistory = customLayout.findViewById<TextView>(R.id.idTvHistory)
+
+        //
+        Picasso.get().load(imageGroup).into(ivImgGroup)
+        tvNameGroup.text = nameGroup
+        tvPlaceYearFounded.text = placeYearFounded
+        tvMusicalGenre.text = musicalGenre
+        tvGroupMembers.text = groupMembers
+        tvHistory.text = history
+
+        builder.setView(customLayout)
+
+        // 4. Agregar los botones estándar (setPositiveButton, setNegativeButton, etc.)
+        builder.setNeutralButton(R.string.txt_thanks_information) { dialog, which -> }
+
+        //
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    /**/
+    fun showAlertDialog()
+    {
+        val builder = AlertDialog.Builder(this)
+        // Inflar el layout personalizado
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.alertdialog_custom, null)
+        //
+        val btnDiscography = customLayout.findViewById<Button>(R.id.idBtnDiscography)
+        val btnInformation = customLayout.findViewById<Button>(R.id.idBtnInformation)
+        //
+        builder.setView(customLayout)
+        val dialog = builder.create()
+        //
+        btnDiscography.setOnClickListener {
+            Toast.makeText(this,"btnDiscography", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        btnInformation.setOnClickListener {
+            Toast.makeText(this,"btnInformation", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        //
+        dialog.show()
+    }
 
 }/*END of MainActivity : AppCompatActivity()*/

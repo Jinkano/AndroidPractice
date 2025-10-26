@@ -38,6 +38,32 @@ class DiscographyActivity : AppCompatActivity()
         supportActionBar?.title = nameGroup
         supportActionBar?.subtitle = nameGroup
 
+        /**/
+        // 1. Recuperar el objeto Parcelable del Intent
+        // Usamos T::class.java para especificar el tipo en getParcelableExtra
+        //val discographyList: List<Discography> = intent.getParcelableExtra<MusicGroup>("SELECTED_GROUP")
+
+        //if (musicGroup != null) {
+            // 2. Obtener la discografía del objeto
+            //val discographyList: List<Album> = musicGroup.discography
+
+            // 3. Usar la lista de discografía para poblar un RecyclerView
+            //    que muestre los títulos, años, etc., de los álbumes.
+
+            // Ejemplo de uso: Mostrar el nombre del grupo y la cantidad de álbumes
+            // log.d("SecondActivity", "Grupo: ${musicGroup.music_group}")
+            // log.d("SecondActivity", "Número de álbumes: ${discographyList.size}")
+
+            // Aquí configuras tu Adapter para el RecyclerView de la discografía
+            // val recyclerView = findViewById<RecyclerView>(R.id.discography_recyclerview)
+            // val adapter = DiscographyAdapter(discographyList)
+            // recyclerView.adapter = adapter
+
+        //} else {
+            // Manejar el caso en que el objeto no se haya pasado correctamente
+        //}
+
+
     }/*End of onCreate*/
 
     /**/

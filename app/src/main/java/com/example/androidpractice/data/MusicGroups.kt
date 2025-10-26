@@ -21,8 +21,9 @@ data class Discography(
     @SerializedName("song_list") val songList: List<String>,
     @SerializedName("image_disk_url") val imageDisk: String?
 )
+/*
 
-/*@Parcelize
+@Parcelize
 data class MusicGroups(
     val id_group: String,
     val music_group: String,
