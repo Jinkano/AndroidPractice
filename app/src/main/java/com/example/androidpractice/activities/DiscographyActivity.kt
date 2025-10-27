@@ -1,30 +1,38 @@
 package com.example.androidpractice.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidpractice.R
+import com.example.androidpractice.adapters.DiscographyAdapter
+import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivityDiscographyBinding
+import com.google.gson.Gson
 
 class DiscographyActivity : AppCompatActivity()
 {
     /*Constant for the Intent*/
     companion object {
-        const val PE_NAME_GROUP = "PE_NAME_GROUP"
+        const val PE_GROUP_JSON = "PE_GROUP_JSON"
     }
 
     /**/
     lateinit var binding: ActivityDiscographyBinding
 
+    lateinit var adapter: DiscographyAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         binding = ActivityDiscographyBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(R.layout.activity_discography)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -32,37 +40,26 @@ class DiscographyActivity : AppCompatActivity()
         }/*Start of onCreate*/
 
         /**/
-        val nameGroup = intent.getStringExtra(PE_NAME_GROUP)!!
+        val json = intent.getStringExtra(PE_GROUP_JSON)!!
+        val musicGroup = Gson().fromJson(json, MusicGroups::class.java)
+
         /**/
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = nameGroup
-        supportActionBar?.subtitle = nameGroup
+        supportActionBar?.title = musicGroup.group
+        supportActionBar?.subtitle = musicGroup.genre
 
         /**/
-        // 1. Recuperar el objeto Parcelable del Intent
-        // Usamos T::class.java para especificar el tipo en getParcelableExtra
-        //val discographyList: List<Discography> = intent.getParcelableExtra<MusicGroup>("SELECTED_GROUP")
+        adapter = DiscographyAdapter(musicGroup.discography) { position ->
 
-        //if (musicGroup != null) {
-            // 2. Obtener la discografía del objeto
-            //val discographyList: List<Album> = musicGroup.discography
+            val json: String = Gson().toJson(musicGroup.discography[position])
 
-            // 3. Usar la lista de discografía para poblar un RecyclerView
-            //    que muestre los títulos, años, etc., de los álbumes.
+            val intent = Intent(this, SongListActivity::class.java)
+            intent.putExtra(SongListActivity.PE_ALBUM,json)
+        }
 
-            // Ejemplo de uso: Mostrar el nombre del grupo y la cantidad de álbumes
-            // log.d("SecondActivity", "Grupo: ${musicGroup.music_group}")
-            // log.d("SecondActivity", "Número de álbumes: ${discographyList.size}")
-
-            // Aquí configuras tu Adapter para el RecyclerView de la discografía
-            // val recyclerView = findViewById<RecyclerView>(R.id.discography_recyclerview)
-            // val adapter = DiscographyAdapter(discographyList)
-            // recyclerView.adapter = adapter
-
-        //} else {
-            // Manejar el caso en que el objeto no se haya pasado correctamente
-        //}
-
+        /**/
+        binding.idRvDiscography.adapter = adapter
+        binding.idRvDiscography.layoutManager = GridLayoutManager(this,2)
 
     }/*End of onCreate*/
 

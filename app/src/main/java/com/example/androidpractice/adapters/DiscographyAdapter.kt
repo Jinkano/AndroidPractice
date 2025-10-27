@@ -3,12 +3,12 @@ package com.example.androidpractice.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidpractice.data.MusicGroups
-import com.example.androidpractice.databinding.ItemListGroupBinding
+import com.example.androidpractice.data.Discography
+import com.example.androidpractice.databinding.ItemDiscographyBinding
 import com.squareup.picasso.Picasso
-/*
+
 class DiscographyAdapter(
-    var items: List<MusicGroups>,
+    var items: List<Discography>,
     val onClickListener: (Int) -> Unit): RecyclerView.Adapter<DiscographyViewHolder>()
 {
     /*
@@ -18,7 +18,7 @@ class DiscographyAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscographyViewHolder
     {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemInformationBinding.inflate(layoutInflater,parent,false)
+        val binding = ItemDiscographyBinding.inflate(layoutInflater,parent,false)
         return DiscographyViewHolder(binding)
     }
 
@@ -32,23 +32,18 @@ class DiscographyAdapter(
     override fun getItemCount(): Int {return items.size}
 
     /**/
-    fun updateItems(items: List<MusicGroups>) {
+    fun updateItems(items: List<Discography>) {
         this.items = items
         notifyDataSetChanged()
     }
 }
 
-**
-class DiscographyViewHolder(val binding: ItemInformationBinding): RecyclerView.ViewHolder(binding.root)
+
+class DiscographyViewHolder(val binding: ItemDiscographyBinding): RecyclerView.ViewHolder(binding.root)
 {
         /**/
-        fun render(musicGroup: MusicGroups){
-            binding.idTvNameGroup.text = musicGroup.group
-            binding.idTvPlaceYearFounded.text = musicGroup.founded
-            binding.idTvMusicalGenre.text = musicGroup.genre
-            binding.idTvGroupMembers.text = musicGroup.members
-            binding.idTvHistory.text = musicGroup.history
-            //Log.i("API", musicGroup.imageGroup ?: "")
-            Picasso.get().load(musicGroup.imageGroup).into(binding.idIvImgGroup)
+        fun render(discography: Discography){
+            binding.idTvNameDisk.text = discography.title
+            Picasso.get().load(discography.imageDisk).into(binding.idIvImgDisk)
         }
-}*/
+}

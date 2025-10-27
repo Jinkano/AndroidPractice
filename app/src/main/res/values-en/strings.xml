@@ -11,4 +11,7 @@
     <string name="txt_disk_image">Disk image</string>
     <string name="txt_information">Information</string>
     <string name="txt_thanks_information">Thanks for the information</string>
+    <string name="txt_play_pause_button">Play and pause button</string>
+    <string name="txt_album">Album</string>
+    <string name="txt_publication">Publication</string>
 </resources>

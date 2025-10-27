@@ -16,11 +16,6 @@ interface MusicGroupService
 
     @GET("5186-9b70-4ebc-8a2a")//https://dummyjson.com/c/5186-9b70-4ebc-8a2a
     suspend fun getAllDiscography() : List<Discography>
-    //suspend fun getAllDiscography() : Call<List<Discography>>
-
-    /*@GET("5186-9b70-4ebc-8a2a")
-    suspend fun getGroupByName(@Query("music_group") group: String): MusicGroups*/
-    //suspend fun getGroupByName(@Path("music_group") group: String): MusicGroups
 
     companion object
     {

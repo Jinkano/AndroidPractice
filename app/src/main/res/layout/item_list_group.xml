@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:background="#000000">
 
-
             <TextView
                 android:id="@+id/idTvNameGroup"
                 android:layout_width="wrap_content"
@@ -44,7 +43,7 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/idTvNameGroup"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/ic_launcher_foreground" />
 
 
             <Button

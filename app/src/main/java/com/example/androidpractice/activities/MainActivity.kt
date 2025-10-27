@@ -3,10 +3,8 @@ package com.example.androidpractice.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -15,15 +13,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidpractice.R
 import com.example.androidpractice.adapters.ListGroupAdapter
-import com.example.androidpractice.data.Discography
 import com.example.androidpractice.data.MusicGroupService
 import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivityMainBinding
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.time.Duration
 
 class MainActivity : AppCompatActivity()
 {
@@ -31,8 +28,6 @@ class MainActivity : AppCompatActivity()
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: ListGroupAdapter
     var listMusicGroups: List<MusicGroups> = emptyList()
-
-    var listDiscography: List<Discography> = emptyList()
 
 /**/
     var nameGroup = ""
@@ -56,6 +51,7 @@ class MainActivity : AppCompatActivity()
 
         /**/
         supportActionBar?.title = getString(R.string.txt_title_main)
+        //supportActionBar?.hide()
 
         getGroupList()
 
@@ -64,13 +60,10 @@ class MainActivity : AppCompatActivity()
             {position ->
                 val musicGroup = listMusicGroups[position]
                 val intent = Intent(this, DiscographyActivity::class.java)
-                intent.putExtra(DiscographyActivity.PE_NAME_GROUP,musicGroup.group)
-                //intent.putExtra(DiscographyActivity.PE_NAME_GROUP,musicGroup.music_group)
-                //intent.putExtra("SELECTED_GROUP",musicGroup.discography)
-                // Usamos putParcelableArrayListExtra para pasar una lista de Parcelables
-                //intent.putArrayListExtra("ALBUMS_KEY", ArrayList(discographyList))
-                //intent.putExtra(InformationActivity.PE_DISCOGRAPHY_GROUP,musicGroup.discography)
-                //
+                val json: String = Gson().toJson(musicGroup)
+
+
+                intent.putExtra(DiscographyActivity.PE_GROUP_JSON,json)
                 startActivity(intent)
         },
             {position ->
@@ -85,7 +78,7 @@ class MainActivity : AppCompatActivity()
 
                 showAlertDialogInfo()
                 //showAlertDialog()
-                /*
+                /* Estas líneas de código son para mostrar información en el Activity Information
                 val intent = Intent(this, InformationActivity::class.java)
                 intent.putExtra(InformationActivity.PE_NAME_GROUP,musicGroup.group)
                 intent.putExtra(InformationActivity.PE_FOUNDED_GROUP,musicGroup.founded)
@@ -100,10 +93,6 @@ class MainActivity : AppCompatActivity()
         /**/
         binding.idRvListGroups.adapter = adapter
         binding.idRvListGroups.layoutManager = LinearLayoutManager(this)
-
-
-
-        /**/
 
     }/*End of onCreate*/
 
@@ -123,21 +112,6 @@ class MainActivity : AppCompatActivity()
         }
     }
 
-    /*We create the function*/
-    /*fun getListDiscograpy() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val service = MusicGroupService.getInstance()
-                listDiscography = service.getAllDiscography()
-                CoroutineScope(Dispatchers.Main).launch {
-                    adapter.updateItems(listDiscography)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }*/
-
     /**/
     fun showAlertDialogInfo()
     {
@@ -148,7 +122,7 @@ class MainActivity : AppCompatActivity()
 
         //
         val ivImgGroup = customLayout.findViewById<ImageView>(R.id.idIvImgGroup)
-        val tvNameGroup = customLayout.findViewById<TextView>(R.id.idTvNameGroup)
+        val tvNameGroup = customLayout.findViewById<TextView>(R.id.idTvNameDisk)
         val tvPlaceYearFounded = customLayout.findViewById<TextView>(R.id.idTvPlaceYearFounded)
         val tvMusicalGenre = customLayout.findViewById<TextView>(R.id.idTvMusicalGenre)
         val tvGroupMembers = customLayout.findViewById<TextView>(R.id.idTvGroupMembers)
@@ -172,7 +146,7 @@ class MainActivity : AppCompatActivity()
         dialog.show()
     }
 
-    /**/
+    /*
     fun showAlertDialog()
     {
         val builder = AlertDialog.Builder(this)
@@ -195,6 +169,6 @@ class MainActivity : AppCompatActivity()
         }
         //
         dialog.show()
-    }
+    }*/
 
 }/*END of MainActivity : AppCompatActivity()*/

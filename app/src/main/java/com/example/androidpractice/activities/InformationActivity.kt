@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.androidpractice.R
-import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivityInformationBinding
 import com.squareup.picasso.Picasso
 
@@ -26,7 +25,6 @@ class InformationActivity : AppCompatActivity()
     }
     /**/
     lateinit var binding: ActivityInformationBinding
-    lateinit var musicGroup: MusicGroups
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +41,6 @@ class InformationActivity : AppCompatActivity()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         loadGameData()
 
-        //binding.idTvNameGroup.text = intent.getStringExtra(PE_NAME_GROUP)!!
-        //val nameGroup = intent.getStringExtra(PE_NAME_GROUP)!!
-        //getInfoGroup(nameGroup)
     }/*End of onCreate*/
 
     /**/
@@ -58,21 +53,6 @@ class InformationActivity : AppCompatActivity()
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
-    /**/
-    /*fun getInfoGroup(group: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val service = MusicGroupService.getInstance()
-                musicGroup = service.getGroupByName(group)
-                CoroutineScope(Dispatchers.Main).launch {
-                    loadGameData()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }*/
 
     /**/
     fun loadGameData()

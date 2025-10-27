@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Practica Android</string>
     <string name="txt_title_main">Grupos musicales</string>
+
+    <!---->
     <string name="txt_group_image">Imagen del grupo</string>
     <string name="txt_place_date_foundation">Lugar y fecha de fundación</string>
     <string name="txt_musical_genre">Genero musical</string>
@@ -14,5 +16,8 @@
 
     <!---->
     <string name="txt_thanks_information">Gracias por la información</string>
+    <string name="txt_play_pause_button">Botón de play y pause</string>
+    <string name="txt_album">Álbum</string>
+    <string name="txt_publication">Publicación</string>
     <!---->
 </resources>
