@@ -15,7 +15,6 @@ class ListGroupAdapter(
 {
     /*
     * Estas 3 funciones son implementadas onCreateViewHolder onBindViewHolder getItemCount
-    *
     * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicGroupViewHolder
     {
@@ -45,13 +44,9 @@ class ListGroupAdapter(
 class MusicGroupViewHolder(val binding: ItemListGroupBinding): RecyclerView.ViewHolder(binding.root)
 {
         /**/
-        fun render(musicGroup: MusicGroups){
+        fun render(musicGroup: MusicGroups)
+        {
             binding.idTvNameGroup.text = musicGroup.group
-            //Log.i("API", musicGroup.imageGroup ?: "")
             Picasso.get().load(musicGroup.imageGroup).into(binding.idIvImgGroup)
-            //
-            //val discographyList: List<Discography> = musicGroup.discography
-            //listDiscography = musicGroup.discography
-            //
         }
 }

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpractice.databinding.ItemSongListBinding
-import com.squareup.picasso.Picasso
 
 class SongListAdapter(
     var items: List<String>,
-    val onClickListener: (Int) -> Unit): RecyclerView.Adapter<SongListViewHolder>()
+    val onClickListener: (Int) -> Unit
+): RecyclerView.Adapter<SongListViewHolder>()
 {
     /**/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongListViewHolder
@@ -39,7 +39,7 @@ class SongListViewHolder(val binding: ItemSongListBinding): RecyclerView.ViewHol
 {
     /**/
     fun render(songList: String){
-        //binding.idTvSongName.text = songList.
+        binding.idTvSongName.text = songList
         //Picasso.get().load(discography.imageDisk).into(binding.idIvImgDisk)
     }
 }

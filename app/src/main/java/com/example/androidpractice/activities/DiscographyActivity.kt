@@ -16,7 +16,7 @@ import com.google.gson.Gson
 
 class DiscographyActivity : AppCompatActivity()
 {
-    /*Constant for the Intent*/
+    /**/
     companion object {
         const val PE_GROUP_JSON = "PE_GROUP_JSON"
     }
@@ -50,11 +50,11 @@ class DiscographyActivity : AppCompatActivity()
 
         /**/
         adapter = DiscographyAdapter(musicGroup.discography) { position ->
-
-            val json: String = Gson().toJson(musicGroup.discography[position])
-
+            //val musicGroup = listMusicGroups[position]
             val intent = Intent(this, SongListActivity::class.java)
+            val json: String = Gson().toJson(musicGroup.discography[position])
             intent.putExtra(SongListActivity.PE_ALBUM,json)
+            startActivity(intent)
         }
 
         /**/

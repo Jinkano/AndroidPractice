@@ -19,5 +19,10 @@
     <string name="txt_play_pause_button">Botón de play y pause</string>
     <string name="txt_album">Álbum</string>
     <string name="txt_publication">Publicación</string>
+
+    <!---->
+    <string name="txt_menu_search">Buscar</string>
+
+    <!---->
     <!---->
 </resources>

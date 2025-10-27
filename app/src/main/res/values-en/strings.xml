@@ -14,4 +14,5 @@
     <string name="txt_play_pause_button">Play and pause button</string>
     <string name="txt_album">Album</string>
     <string name="txt_publication">Publication</string>
+    <string name="txt_menu_search">Search</string>
 </resources>

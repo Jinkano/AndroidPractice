@@ -1,17 +1,13 @@
 package com.example.androidpractice.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidpractice.R
 import com.example.androidpractice.activities.DiscographyActivity.Companion.PE_GROUP_JSON
-import com.example.androidpractice.adapters.DiscographyAdapter
 import com.example.androidpractice.adapters.SongListAdapter
 import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivitySongListBinding
@@ -22,7 +18,6 @@ class SongListActivity : AppCompatActivity()
     /**/
     companion object
     {
-        //const val PE_GROUP_JSON = "PE_GROUP_JSON"
         const val PE_ALBUM = "PE_ALBUM"
     }
     /**/
@@ -50,8 +45,7 @@ class SongListActivity : AppCompatActivity()
         //supportActionBar?.subtitle = musicGroup.genre
 
         /**/
-        adapter = SongListAdapter(musicGroup.) {
-        }
+        adapter = SongListAdapter(musicGroup.discography[0].songList) { }
 
         /**/
         binding.idRvSongList.adapter = adapter

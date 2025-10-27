@@ -12,8 +12,6 @@ class DiscographyAdapter(
     val onClickListener: (Int) -> Unit): RecyclerView.Adapter<DiscographyViewHolder>()
 {
     /*
-    * Estas 3 funciones son implementadas onCreateViewHolder onBindViewHolder getItemCount
-    *
     * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscographyViewHolder
     {

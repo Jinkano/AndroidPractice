@@ -3,11 +3,13 @@ package com.example.androidpractice.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity()
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: ListGroupAdapter
     var listMusicGroups: List<MusicGroups> = emptyList()
+    var filteredMusicGroups: List<MusicGroups> = emptyList()
 
 /**/
     var nameGroup = ""
@@ -56,18 +59,17 @@ class MainActivity : AppCompatActivity()
         getGroupList()
 
         /**/
-        adapter = ListGroupAdapter(listMusicGroups,
+        adapter = ListGroupAdapter(filteredMusicGroups,
             {position ->
-                val musicGroup = listMusicGroups[position]
+                val musicGroup = filteredMusicGroups[position]
                 val intent = Intent(this, DiscographyActivity::class.java)
                 val json: String = Gson().toJson(musicGroup)
 
-
                 intent.putExtra(DiscographyActivity.PE_GROUP_JSON,json)
                 startActivity(intent)
-        },
+            },
             {position ->
-                val musicGroup = listMusicGroups[position]
+                val musicGroup = filteredMusicGroups[position]
 
                 nameGroup = musicGroup.group
                 placeYearFounded = musicGroup.founded
@@ -96,6 +98,25 @@ class MainActivity : AppCompatActivity()
 
     }/*End of onCreate*/
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+
+        val searchView = menu.findItem(R.id.idMnSearch).actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filteredMusicGroups = listMusicGroups.filter { it.group.contains(newText, true) }
+                adapter.updateItems(filteredMusicGroups)
+                return true
+            }
+        })
+
+        return true
+    }
 
     /*We create the function*/
     fun getGroupList() {
@@ -103,9 +124,11 @@ class MainActivity : AppCompatActivity()
             try {
                 val service = MusicGroupService.getInstance()
                 listMusicGroups = service.getAllGroups()
+                filteredMusicGroups = listMusicGroups
                 CoroutineScope(Dispatchers.Main).launch {
                     adapter.updateItems(listMusicGroups)
                 }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }

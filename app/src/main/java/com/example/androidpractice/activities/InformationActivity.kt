@@ -20,8 +20,6 @@ class InformationActivity : AppCompatActivity()
         const val PE_MEMBERS_GROUP = "PE_MEMBERS_GROUP"
         const val PE_HISTORY_GROUP = "PE_HISTORY_GROUP"
         const val PE_IMAGE_GROUP = "PE_IMAGE_GROUP"
-
-        //val PE_DISCOGRAPHY_GROUP: List<String> = listOf("PE_DISCOGRAPHY_GROUP")
     }
     /**/
     lateinit var binding: ActivityInformationBinding
