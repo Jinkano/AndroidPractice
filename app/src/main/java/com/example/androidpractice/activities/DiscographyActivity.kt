@@ -52,7 +52,8 @@ class DiscographyActivity : AppCompatActivity()
         adapter = DiscographyAdapter(musicGroup.discography) { position ->
             //val musicGroup = listMusicGroups[position]
             val intent = Intent(this, SongListActivity::class.java)
-            val json: String = Gson().toJson(musicGroup.discography[position])
+            val discography = musicGroup.discography[position]
+            val json: String = Gson().toJson(discography)
             intent.putExtra(SongListActivity.PE_ALBUM,json)
             startActivity(intent)
         }

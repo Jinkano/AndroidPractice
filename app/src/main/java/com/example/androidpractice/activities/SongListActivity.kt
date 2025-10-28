@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidpractice.R
 import com.example.androidpractice.activities.DiscographyActivity.Companion.PE_GROUP_JSON
 import com.example.androidpractice.adapters.SongListAdapter
+import com.example.androidpractice.data.Discography
 import com.example.androidpractice.data.MusicGroups
 import com.example.androidpractice.databinding.ActivitySongListBinding
 import com.google.gson.Gson
@@ -37,7 +38,7 @@ class SongListActivity : AppCompatActivity()
 
         /**/
         val json = intent.getStringExtra(PE_ALBUM)!!
-        val musicGroup = Gson().fromJson(json, MusicGroups::class.java)
+        val discography = Gson().fromJson(json, Discography::class.java)
 
         /**/
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -45,7 +46,7 @@ class SongListActivity : AppCompatActivity()
         //supportActionBar?.subtitle = musicGroup.genre
 
         /**/
-        adapter = SongListAdapter(musicGroup.discography[0].songList) { }
+        adapter = SongListAdapter(discography.songList) { }
 
         /**/
         binding.idRvSongList.adapter = adapter
