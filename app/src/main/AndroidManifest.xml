@@ -4,6 +4,11 @@
     <!-- Agregar permiso para acceder a Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Agregar permiso para acceder al almacenamiento del dispositivo -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

@@ -7,7 +7,7 @@ import com.example.androidpractice.databinding.ItemSongListBinding
 
 class SongListAdapter(
     var items: List<String>,
-    val onClickListener: (Int) -> Unit
+    val onPlayPauseListener: (Int) -> Unit
 ): RecyclerView.Adapter<SongListViewHolder>()
 {
     /**/
@@ -22,7 +22,7 @@ class SongListAdapter(
     {
         val item = items[position]
         holder.render(item)
-        holder.itemView.setOnClickListener { onClickListener(position) }
+        holder.binding.idBtnPlayPause.setOnClickListener { onPlayPauseListener(position) }
     }
 
     override fun getItemCount(): Int {return items.size}
