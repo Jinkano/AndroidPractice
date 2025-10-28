@@ -6,66 +6,63 @@
     tools:context=".activities.SongListActivity"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/idTvNameGroup"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="casual"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="NOMBRE DEL GRUPO" />
-
-    <TextView
-        android:id="@+id/tvAlbumTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/txt_album"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTvNameGroup" />
-
-    <TextView
-        android:id="@+id/idTvAlbumTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/material_dynamic_neutral95"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvAlbumTitle"
-        app:layout_constraintTop_toTopOf="@+id/tvAlbumTitle"
-        tools:text="TÍTULO DEL ÁLBUM" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvYearReleased"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/txt_publication"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/tvAlbumTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlbumTitle" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/idTvYearReleased"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvYearReleased"
-        app:layout_constraintTop_toTopOf="@+id/tvYearReleased"
-        tools:text="FECHA DE LANZAMIENTO" />
+            <TextView
+                android:id="@+id/tvYearReleased"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_publication"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/idIvImageDisk" />
+
+            <TextView
+                android:id="@+id/idTvYearReleased"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/idIvImageDisk"
+                app:layout_constraintEnd_toStartOf="@+id/idIvImageDisk"
+                app:layout_constraintStart_toStartOf="@+id/tvYearReleased"
+                app:layout_constraintTop_toBottomOf="@+id/tvYearReleased"
+                tools:text="FECHA DE LANZAMIENTO" />
+
+
+            <ImageView
+                android:id="@+id/idIvImageDisk"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/txt_disk_image"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRvSongList"
@@ -74,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvYearReleased"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
         tools:listitem="@layout/item_song_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

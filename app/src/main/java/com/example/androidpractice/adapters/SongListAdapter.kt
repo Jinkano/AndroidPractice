@@ -40,6 +40,5 @@ class SongListViewHolder(val binding: ItemSongListBinding): RecyclerView.ViewHol
     /**/
     fun render(songList: String){
         binding.idTvSongName.text = songList
-        //Picasso.get().load(discography.imageDisk).into(binding.idIvImgDisk)
     }
 }
